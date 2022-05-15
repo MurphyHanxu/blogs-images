@@ -1,6 +1,6 @@
 +++
-author = "Jasmine"
-title = "最常用的MySQL语句"
+author = "Murphy"
+title = "Mysql notes"
 date = "2022-3-30"
 
 description = "SQL"
@@ -431,3 +431,54 @@ select 函数名() from 表名;
 
    
 
+4. 其它函数
+
+   ```mysql
+   mysql>
+   select version();
+   select database();
+   select user();
+   ```
+
+   
+   
+
+5. 流程控制函数
+
+   1.if()：
+
+   ```mysql
+   mysql>
+   select if(表达式,ans1,ans2);
+   ```
+
+   如果表达式为真，返回ans1。如果表达式为假，返回ans2。
+
+   2.case()：
+
+   ```mysql
+   mysql>
+   select salary, department_id
+   case department_id
+   when 30 then salary*1.1
+   when 40 then salary*1.2
+   when 50 then salary*1.3
+   else salary
+   end as new salary
+   from employees;
+   ```
+
+
+   ```mysql
+   mysql>
+   select salary,
+   case
+   when salary>20000 then 'A'
+   when salary>15000 then 'B'
+   when salary>10000 then 'C'
+   else 'D'
+   end as salary level
+   from employees
+   ```
+
+   
