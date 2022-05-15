@@ -108,14 +108,16 @@ categories = [
 1. 查询常量、表达式、函数
    
    ```mysql
+   mysql>
    select 内容1,内容2... from 表名；
    ```
-
+   
    查询的结果是一个虚拟的表格
-
+   
 2. 起别名
 
    ```mysql
+   mysql>
    select 内容1 as 别名1,内容2 as 别名2 from 表名;
    select 内容1 别名1,内容2 别名2 from 表名;
    ```
@@ -123,6 +125,7 @@ categories = [
 3. 去重
 
    ```mysql
+   mysql>
    select distinct 内容 from 表名;
    ```
 
@@ -137,12 +140,14 @@ categories = [
    select null+1;	只要其中一方为null，则结果一定为null。
 
    ```mysql
+   mysql>
    select 内容1+内容2 as 别名 from 表名;
    ```
 
 5. 使用concat进行连接
 
    ```mysql
+   mysql>
    select concat(内容1，内容2) as 别名 from 表名;
    ```
 
@@ -154,6 +159,7 @@ categories = [
 1. where语法
 
    ```mysql
+   mysql>
    select 内容 from 表名 where 筛选条件;
    ```
 
@@ -184,6 +190,7 @@ categories = [
 1. 语法
 
    ```mysql
+   mysql>
    select 内容 from 表名 where 筛选条件 order by 排序列表 desc(asc)
    ```
 
@@ -206,7 +213,8 @@ categories = [
 调用：
 
 ```mysql
- select 函数名() from 表名;
+mysql>
+select 函数名() from 表名;
 ```
 
 分类：1.单行函数：如concat(), length(), ifnull() 等
@@ -218,6 +226,7 @@ categories = [
    length()：获取参数值的字节个数
 
    ```mysql
+   mysql>
    select length('john');
    --4
    select length('我爱你')
@@ -229,6 +238,7 @@ categories = [
    concat()：拼接字符串
 
    ```mysql
+   mysql>
    select concat(lastname,'_',firstname) 姓名 from employees;
    ```
 
@@ -237,6 +247,7 @@ categories = [
    upper(), lower()：大写小写
 
    ```mysql
+   mysql>
    select upper('john');
    select lower('JOHN');
    ```
@@ -248,6 +259,7 @@ categories = [
    索引从1开始
 
    ```mysql
+   mysql>
    select substr('柯西的柯西收敛原理',4);
    --柯西收敛原理
    select substr('柯西的柯西收敛原理',4,4);
@@ -259,6 +271,7 @@ categories = [
    instr()：返回子串第一次出现的索引，如果找不到返回0
 
    ```mysql
+   mysql>
    select instr('有理数是实数集的稠子集','实数集');
    --5
    ```
@@ -268,9 +281,10 @@ categories = [
    trim()：掐头去尾
 
    ```mysql
+   mysql>
    select trim('   你是人间肆月甜   ');
    --你是人间肆月甜
-   selecr trim('a'from'aaaaa你是人间肆月甜');
+   select trim('a'from'aaaaa你是人间肆月甜');
    --你是人间肆月甜
    ```
 
@@ -279,6 +293,7 @@ categories = [
    lpad()：用指定字符实现左填充指定长度
 
    ```mysql
+   mysql>
    select lpad('mathmatical analysis',5,'*');
    --*****mathmatical analysis
    ```
@@ -288,6 +303,7 @@ categories = [
    rpad()：用指定字符实现右填充指定长度
 
    ```mysql
+   mysql>
    select rpad('mathmatical analysis',5,'*');
    --mathmatical analysis*****
    ```
@@ -296,6 +312,7 @@ categories = [
    replace()：替换
 
    ```mysql
+   mysql>
    select replace('张无忌爱上了周芷若','周芷若','赵敏');
    --张无忌爱上了赵敏
    ```
@@ -307,6 +324,7 @@ categories = [
    round()：四舍五入
 
    ```mysql
+   mysql>
    select round(5.567,2);
    --5.57
    select round(5.2);
@@ -318,6 +336,7 @@ categories = [
    ceil()：向上取整，返回>=改参数的最小整数
 
    ```mysql
+   mysql>
    select ceil();
    ```
 
@@ -326,6 +345,7 @@ categories = [
    floor()：向下取整，返回<=改参数的最大整数
 
    ```mysql
+   mysql>
    select floor(-9.99);
    -- -10
    ```
@@ -335,6 +355,7 @@ categories = [
    truncate()：截断
 
    ```mysql
+   mysql>
    select truncate(1.65,1);
    --1.6
    ```
@@ -344,6 +365,7 @@ categories = [
    mod()：取余
 
    ```mysql
+   mysql>
    select mod(10,3);
    --1
    ```
@@ -357,6 +379,7 @@ categories = [
    now()：返回当前系统日期+时间
 
    ```mysql
+   mysql>
    select now();
    ```
 
@@ -365,6 +388,7 @@ categories = [
    curdate()：返回当前日期，不包含时间
 
    ```mysql
+   mysql>
    select curdate();
    ```
 
@@ -373,6 +397,7 @@ categories = [
    curtime()：返回当前时间，不包含日期
 
    ```mysql
+   mysql>
    select curtime();
    ```
 
@@ -381,6 +406,7 @@ categories = [
    year(), month(), monthname(), day(), hour(), minute(), second()：可以获取数据的对应值
 
    ```mysql
+   mysql>
    select year(now());
    ```
 
@@ -389,6 +415,7 @@ categories = [
    str_to_date：将字符通过指定的格式转换成日期
 
    ```mysql
+   mysql>
    select str_to_date('2002-2-19','%Y-%c-%d');
    --2002-2-19
    ```
@@ -398,6 +425,7 @@ categories = [
    date_format：将日期转换成字符
 
    ```mysql
+   mysql>
    select date_format(now(),'%Y年%m月%d日');
    ```
 
