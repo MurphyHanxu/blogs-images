@@ -1,6 +1,6 @@
 +++
 author = "Murphy"
-title = "Mysql notes"
+title = "notes"
 date = "2022-3-30"
 
 description = "SQL"
@@ -442,7 +442,6 @@ select 函数名() from 表名;
 
    
    
-
 5. 流程控制函数
 
    1.if()：
@@ -467,8 +466,7 @@ select 函数名() from 表名;
    end as new salary
    from employees;
    ```
-
-
+   
    ```mysql
    mysql>
    select salary,
@@ -481,4 +479,192 @@ select 函数名() from 表名;
    from employees
    ```
 
-   
+### 分组函数
+
+功能：用作统计使用，又称为聚合函数或统计函数或组函数。
+
+sum 求和，avg 平均值，max 最大值，min 最小值，count 计算个数
+
+1. 简单的使用
+
+   ```mysql
+   mysql>
+   select sum(salary) from employees;
+   select avg(salary) from employees;
+   select min(salary) from employees;
+   select max(salary) from employees;
+   select count(salary) from employees;
+   ```
+
+   ```mysql
+   mysql>
+   select sum(salary) 和, avg(salary) 平均 from employees;
+   ```
+
+2. 参数支持哪些类型
+
+   sum(), avg()，一般用于数值型。
+
+   max(), min()，可以处理任何类型。
+
+   count()，计算不为null的个数。
+
+3. 是否忽略null值
+
+   以上分组函数都忽略null值
+
+4. 可以和distinct搭配使用
+
+   ```mysql
+   mysql>
+   select sum(distinct salary), sum(salary) from employees;
+   select count(distinct salary), count(salary) from employees;
+   ```
+
+5. count()函数的详细介绍
+
+   ```mysql
+   mysql>
+   select count(salary) from employees;
+   select count(*) from employees;
+   #在表里写一列常量值并统计个数
+   select count(1) from employees;
+   ```
+
+   效率：
+
+   myisam存储引擎下，count(*)的效率高
+
+   innodb存储引擎下，count(*)和count(1)效率差不多，比count(字段)要高一些
+
+6. 和分组函数一同查询的字段有限制
+
+   和分组函数一同查询的字段要求是group by后的字段
+
+### 分组查询
+
+```mysql
+mysql>
+select group_function(column), column
+from table
+where condition
+group by group_by_expression
+order by column;
+```
+
+注意，查询列表必须特殊，要求是分组函数和group by后出现的字段
+
+例：
+
+```mysql
+mysql>
+select max(salary), job_id
+from employees
+group by job_id;
+```
+
+```mysql
+mysql>
+select count(*), location_id
+from departments
+group by location_id;
+```
+
+```mysql
+mysql>
+select avg(salary), department_id
+from employees
+where email like '%a%'
+group by department_id;
+```
+
+```mysql
+mysql>
+select max(salary), manager_id
+from employees
+where commision_pct is not null
+group by manager_id;
+```
+
+```mysql
+mysql>
+#添加分组后的筛选
+select count(*), department_id
+from employees
+group by department_id
+having count(*)>2;
+```
+
+```mysql
+mysql>
+#添加分组后的筛选
+select max(salary), job_id
+from employees
+where commission_pet is not null
+group by job_id
+having max(salary)>12000;
+```
+
+```mysql
+mysql>
+#添加分组后的筛选
+select min(salary), manager_id
+from employees
+where manager_id>12
+group by manager_id
+having min(salary)>5000;
+```
+
+
+
+按表达式或函数分组，例：
+
+```mysql
+mysql>
+select count(*) c, length(lase_name) len_name
+from employees
+group by len_name
+having c>5;
+```
+
+
+
+按多个字段分组，例：
+
+```mysql
+mysql>
+select avg(salary), department_id , job_id
+from employees
+group by department_id, job_id
+```
+
+
+
+添加排序，例：
+
+```mysql
+mysql>
+select avg(salary), department_id , job_id
+from employees
+where department_id is not null
+group by department_id, job_id
+having avg(salary)>10000
+order by avg(salary) desc;
+```
+
+
+
+总结：
+
+1.分组查询中的筛选条件分为两类。分组前筛选，分组后筛选。数据源不一样。前者为原始表，后者为分组后的结果集。位置不一样。前者为group by子句前，关键字为where，后者为group by子句后，关键字为having。
+
+分组函数做条件肯定是放在having子句中。
+
+2.group by子句支持单个字段分组，多个字段分组，表达式或函数
+
+3.也可以添加排序（排序放在整个分组查询的最后）
+
+
+
+### 连接查询
+
