@@ -668,3 +668,270 @@ order by avg(salary) desc;
 
 ### 连接查询
 
+含义：又称多表连接，当查询的字段来自于多个表时，就会用到连接查询。
+
+笛卡尔乘积现象：表1有m行，表2有n行，结果=m*n行
+
+发生原因：没有有效的连接条件
+
+分类：
+
+​			按年代分类：sq192标准：仅支持内连接；
+
+​									sq199标准：支持内连接，外连接（左外连接+右外连接），交叉连接
+
+​			按功能分类：内连接(inner)：等值连接；非等值连接，自连接。
+
+​								   外连接：左外连接(left)；右外连接(right)；全外连接(full)。
+
+​								   交叉连接(cross)
+
+#### sq92:
+
+1. 等值连接
+
+   例：
+
+```mysql
+mysql>
+select last_name, department_name
+from employees, departments
+where employees.'department_id' = departments.'department_id';
+```
+
+```mysql
+mysql>
+select last_name, e.'job_id', job_title
+from employees as e, jobs as j
+where e.'job_id' = j.'job_id';
+```
+
+注意：如果为表起了别名，则查询的字段（select）就不能使用原来的表名去限定
+
+```mysql
+mysql>
+select last_name, depatment_name
+from employees as e, departments as d
+where e.'department_id' = d.'department_id' and e.'commission_pct' is not null;
+```
+
+```mysql
+mysql>
+select department_name, city
+from departments as d, location as l
+where d.'location_id' = l.'location_id' and city like '_o%'
+```
+
+```mysql
+mysql>
+#可以添加分组和排序
+select count(*) as 个数, city
+from departments as d, locations as l
+where d.'location_id' = l.'location_id'
+group by city;
+```
+
+```mysql
+mysql>
+select job_title, count(*)
+from employees as e, jobs as j
+where e.'job_id' = j.'job_id'
+group by job_title
+order by count(*) desc;
+```
+
+总结
+
+1.多表等值连接的结果为多表的交集部分
+
+2.n表连接，至少需要n-1个连接条件
+
+3.多表的顺序没有要求
+
+4.一般需要为表起别名
+
+5.可以搭配前面介绍的所有子句使用，比如排序、分组、筛选
+
+
+
+​	2.非等值连接
+
+例：
+
+```mysql
+mysql>
+select salary, grade_level
+from emoloyees as e, job_grades as g
+where salary between g.'lowest_sal' and g.'hightest_sal'
+and g.'grade_level' = 'A';
+```
+
+
+
+​    3.自连接
+
+例：
+
+```mysql
+mysql>
+select e.'employee_id', e.'last_name', m.'employee_id', m.'last_name'
+from employees as e, employees as m
+where e.'manager_id' = m.'employee_id';
+```
+
+
+
+#### sq99:
+
+内连接
+
+特点：
+
+添加排序、分组、筛选
+
+inner可以省略
+
+筛选条件放在where后面，连接条件放在on后面，提高分离性，便于阅读
+
+inner join连接和sql92语法中的等值连接效果是一样的
+
+​	1.等值连接
+
+```mysql
+mysql>
+#语法
+select 查询列表
+from 表1
+inner join 表2
+on 连接条件;
+```
+
+
+
+例：
+
+```mysql
+mysql>
+select last_name, department_name
+from employees as e
+inner join departments as d
+on e.'department_id' = d.'department_id';
+```
+
+```mysql
+mysql>
+select last_name, job_title
+from employees as e
+inner join jobs as 
+on e.'job_id' = j.'job_id'
+where e.'last_name' like '%e%';
+```
+
+```mysql
+mysql>
+select city, count(*) 部门个数
+from departments as d
+inner join lacations as l
+on d.'location_id' = l.'location_id'
+group by city
+having count(*)>2;
+```
+
+```mysql
+mysql>
+select last name, department_name, job_title
+from employees as e
+inner join departments as d on e.'department_id' = d.'department_id'
+inner join jobs as j on e.'job_id' = j.'job_id'
+order by department_name desc;
+```
+
+
+
+​	2.非等值连接
+
+例：
+
+```mysql
+mysql>
+select salary, grade_level
+from employees as e
+join job_grades as g
+on e.'salary' between g.'lowest_sal' and g.'highest_sal';
+```
+
+
+
+​	3.自连接
+
+例：
+
+```mysql
+mysql>
+select e.last_name, m.last_name
+from employees as e
+join employees as m
+on e.'manager_id' = m.'employee_id'
+where e.'last_name' like '%k%';
+```
+
+
+
+外连接
+
+应用场景：用于查询一个表中有，而另一个表中没有的记录
+
+特点：
+
+1.外连接的查询结果为主表中的所有记录
+
+​	如果从表中有和它匹配的，则显示匹配的值
+
+​	如果从表中没有和它匹配的，则显示null
+
+​	外连接查询结果=内连接查询结果+主表中有而从表中没有的记录
+
+2.左外连接，left join左边的是主表
+
+   右外连接，right join右边的是主表
+
+3.左外和右外交换两个表的顺序，可以实现同样的效果
+
+
+
+例：
+
+```mysql
+mysql>
+#左外连接
+select d.*, e.'employee_id'
+from departments as d
+left join employees as e
+on d.'department_id' = e.'department_id'
+where e.'employee_id' is null;
+```
+
+```mysql
+mysql>
+#右外连接
+select d.*, e.'employee_id'
+from employees as e
+right join departments as d
+on d.'department_id' = e.'department_id'
+where e.'employee_id' is null;
+```
+
+
+
+
+
+交叉连接：
+
+```mysql
+mysql>
+#本质为实现
+select girls.*, boys.*
+from girls 
+cross join boys;
+```
+
