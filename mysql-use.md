@@ -929,9 +929,164 @@ where e.'employee_id' is null;
 
 ```mysql
 mysql>
-#本质为实现
+#本质为实现笛卡尔乘积
 select girls.*, boys.*
 from girls 
 cross join boys;
+```
+
+
+
+### 子查询
+
+含义：
+
+出现在其他语句中的select语句，称为子查询。内部嵌套其他select语句的查询，称为主查询。
+
+分类：
+
+按子查询出现的位置。
+
+按结果集的行列数不同。标量子查询（一行一列）；列子查询（一列多行）；行子查询（一行多列）；表子查询（多行多列）
+
+
+
+​	1.标量子查询
+
+例：
+
+```mysql
+mysql>
+select *
+from employees
+where salary>(
+				select salary
+				from employees
+				where last_name = 'Abel'
+				)
+;
+```
+
+
+
+```mysql
+mysql>
+select last_name, job_id, salary
+from employees
+where job_id = (
+    			select job_id
+				from employees
+				where employee_id = 141
+               )
+and salary > (
+				select salary
+				from employees
+				where employee_id = 143
+);
+```
+
+
+
+
+
+​	2.列子查询
+
+例：
+
+```mysql
+mysql>
+select last_name
+from employees
+where department_id in(
+						select distinct department_id
+						from departments
+						where location_id in(1400,1700)
+);
+```
+
+
+
+```mysql
+mysql>
+select last_name
+from employees
+where department_id =(
+						select distinct department_id
+						from departments
+						where location_id in(1400,1700)
+);
+```
+
+
+
+​	3.行子查询
+
+例：
+
+```mysql
+mysql>
+select*
+from employees
+where (employee_id, salary) = (
+								select min(employee_id, max(salary)
+                                from employees)
+```
+
+
+
+​	4.select 后面的子查询
+
+例：
+
+```mysql
+mysql>
+select d.*,(
+			select count(*)
+			from employees
+    		where e.'department_id' = d.'department_id'
+)
+from departments as d;
+```
+
+
+
+```mysql
+mysql>
+select (
+		select department_name
+    	from departments as d
+    	inner join employees as e
+    	on d.'d.department_id' = e.'department+id'
+    	where e.'employee_id' = 102
+) 部门名;
+```
+
+
+
+​	5.from后面的子查询
+
+例：
+
+```mysql
+mysql>
+select ag_dep.*, g.'grade_level'
+from(
+		select avg(salary), department_id
+		from employees
+		group by department_id
+) as ag_dep
+inner join job_grades as g
+on ag_dep.ag between lowest_sal and highest_sal;
+```
+
+
+
+​	6.exists后面（相关子查询）
+
+例：
+
+```mysql
+mysql>
+select exists(select employee_id from employees where salary = 30000);
 ```
 
