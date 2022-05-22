@@ -1090,3 +1090,64 @@ mysql>
 select exists(select employee_id from employees where salary = 30000);
 ```
 
+
+
+
+
+### 分页查询
+
+应用场景：当要显示的数据，一页显示不全，需要分页提交sql请求
+
+语法：
+
+```mysql
+mysql>
+select 查询列表
+from 表
+(join type) join 表2
+where 筛选条件
+group by 分组字段
+having 分组后的筛选
+order by 排序
+limit offset, size;
+#offset要显示条目的起始索引（起始索引从0开始）(page-1)*s
+#size 要显示的条目个数
+```
+
+
+
+例：
+
+```mysql
+mysql>
+#查询前5条员工信息
+select*
+from employees
+limit 0,5
+```
+
+```mysql
+mysql>
+#查询第11条到第25条员工信息
+select*
+from employees 
+limit 10,15
+```
+
+```mysql
+mysql>
+#有奖金的员工信息，并且工资前10名显示
+select*
+from employees
+where commision_pct is not null 
+order by salary desc
+limit 10;
+```
+
+
+
+特点：
+
+1.limit语句放在查询语句的最后，执行逻辑也是在最后
+
+2.
