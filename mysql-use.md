@@ -1150,4 +1150,237 @@ limit 10;
 
 1.limit语句放在查询语句的最后，执行逻辑也是在最后
 
-2.
+
+
+### 联合查询
+
+语法：
+
+```mysql
+mysql>
+查询语句1
+union
+查询语句2
+```
+
+
+
+应用场景：
+
+用于将多个表中相似信息连接在一起
+
+
+
+特点：
+
+1.要求多条查询语句的查询列表是一致的！
+
+2.要求多条查询语句查询的每一列的类型和顺序是一致的
+
+3.union关键字默认去重，如果使用union all可以包含重复项
+
+
+
+例：
+
+```mysql
+mysql>
+select *
+from employees
+where email like '%a%'
+union
+select *
+from employees
+where department_id>90;
+```
+
+
+
+## DML语言的学习
+
+数据操作语言：数据的插入 insert，修改 update，删除 delete
+
+### 插入语句
+
+语法一：
+
+```mysql
+mysql>
+insert into 表名(列名,...)
+values(值1,...);
+```
+
+
+
+例：
+
+```mysql
+mysql>
+#不可以为null的值必须插入值，可以为null的列如何插入值？
+insert into beauty(id, name, sex, phone)
+values(15,'王心凌', '女', '13888888888')
+```
+
+
+
+语法二：
+
+```mysql
+mysql>
+insert into 表名
+set 列名=值,列名=值...;
+```
+
+
+
+注：
+
+1.方式一可以省略列名，但添加值的顺序必须和表中的顺序一致
+
+2.方式一可以支持插入多行，方式二不支持
+
+3.方式一支持子查询，省略了values()，方式二不支持
+
+
+
+### 修改语句
+
+语法：
+
+```mysql
+mysql>
+update 表名
+set 列=新值, 列=新值...
+where 筛选条件;
+```
+
+```mysql
+mysql>
+update 表1 别名
+inner (right,left) join 表2 别名
+on 连接条件
+set 列=值...
+where 筛选条件;
+```
+
+
+
+### 删除语句
+
+语法：
+
+
+    mysql>
+    delete from 表名
+    where 筛选条件;
+
+    mysql>
+    truncate table 表名;
+    
+1.delete可以加where条件，truncate不能加
+
+2.truncate删除，效率比delete高
+
+3.假如要删除的表中有自增长列，如果用delete删除后，再插入数据，自增长列的值从断点开始，而如果truncate删除后，再插入数据，自增长列的值从1开始。
+
+4.truncate删除后没有返回值，而delete删除后有返回值。
+
+5.truncate删除不能回滚，而delete删除可以回滚。
+
+DDL 数据定义语言
+
+库和表的管理
+
+一、库的管理：创建、修改、删除
+
+二、表的管理：创建、修改、删除、复制
+
+创建：create，修改alter，删除drop
+
+一、库的管理
+
+1.库的创建
+
+    mysql>
+    create database if not exists 库名;
+
+2.库的修改
+
+更改库的字符集
+
+    mysql>
+    alter database 库名 character set gbk;
+
+3.库的删除
+
+    mysql>
+    drop database if exists 库名;
+
+二、表的创建
+
+1.表的创建
+
+    mysql>
+    create table if not exists 表名(
+    	列名, 列的类型, [(长度) 约束],
+    	列名, 列的类型, [(长度) 约束],
+    	...
+    	列名, 列的类型, [(长度) 约束]
+	);
+
+2.表的修改
+
+修改列名
+
+    mysql>
+    alter table 表名 change column 旧列名 新列名 类型;
+
+列的类型或约束
+
+    mysql>
+    alter table 表名 modify column 列名 新类型;
+
+添加列
+
+    mysql>
+    alter table 表名 add column 新列名 新类型;
+
+删除列
+
+    mysql>
+    alter table 表名 drop column 列名;
+
+修改表名
+
+    mysql>
+    alter table 表名 rename to 新表名;
+
+3.表的删除
+
+    mysql>
+    drop table if exists 表名;
+
+4.表的复制
+
+    mysql>
+    只复制表的结构
+    create table 新表名 like 旧表名;
+    
+    mysql>
+    复制表的结构和数据
+    create table 新表名
+    select * from 旧表名
+    
+    mysql>
+    只复制部分数据
+    create table 新表名
+    select 内容1，内容2
+    from 旧表名
+    where 条件;
+    
+    mysql>
+    只复制某些字段
+    create table 新表名
+    select 内容
+    from 旧表名
+    where 0;
