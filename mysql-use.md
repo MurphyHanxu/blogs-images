@@ -1,4 +1,4 @@
-+++
+﻿+++
 author = "Murphy"
 title = "notes"
 date = "2022-3-30"
@@ -17,7 +17,7 @@ categories = [
 整理MySQL最常用的SQL语句（建表、增删改查数据）。更多的命令可参考：https://www.runoob.com/mysql/mysql-select-database.html
 
 <!--more-->
-
+#Mysql-use
 ## 常用命令
 
 执行下列SQL语句前，请参照上节内容登录MySQL环境。
@@ -1269,14 +1269,14 @@ where 筛选条件;
 
 语法：
 
+```
+mysql>
+delete from 表名
+where 筛选条件;
 
-    mysql>
-    delete from 表名
-    where 筛选条件;
-
-    mysql>
-    truncate table 表名;
-    
+mysql>
+truncate table 表名;
+```    
 1.delete可以加where条件，truncate不能加
 
 2.truncate删除，效率比delete高
@@ -1287,7 +1287,7 @@ where 筛选条件;
 
 5.truncate删除不能回滚，而delete删除可以回滚。
 
-DDL 数据定义语言
+##DDL 数据定义语言
 
 库和表的管理
 
@@ -1297,90 +1297,156 @@ DDL 数据定义语言
 
 创建：create，修改alter，删除drop
 
-一、库的管理
+###一、库的管理
 
 1.库的创建
-
-    mysql>
-    create database if not exists 库名;
-
+```
+mysql>
+create database if not exists 库名;
+```
 2.库的修改
 
 更改库的字符集
-
-    mysql>
-    alter database 库名 character set gbk;
-
+```
+mysql>
+alter database 库名 character set gbk;
+```
 3.库的删除
-
-    mysql>
-    drop database if exists 库名;
-
-二、表的创建
+```
+mysql>
+drop database if exists 库名;
+```
+###二、表的创建
 
 1.表的创建
-
-    mysql>
-    create table if not exists 表名(
-    	列名, 列的类型, [(长度) 约束],
-    	列名, 列的类型, [(长度) 约束],
-    	...
-    	列名, 列的类型, [(长度) 约束]
-	);
+```
+mysql>
+create table if not exists 表名(
+列名, 列的类型, [(长度) 约束],
+列名, 列的类型, [(长度) 约束],
+...
+列名, 列的类型, [(长度) 约束]
+);
+```
 
 2.表的修改
 
 修改列名
-
-    mysql>
-    alter table 表名 change column 旧列名 新列名 类型;
-
+```
+mysql>
+alter table 表名 change column 旧列名 新列名 类型;
+```
 列的类型或约束
-
-    mysql>
-    alter table 表名 modify column 列名 新类型;
-
+```
+mysql>
+alter table 表名 modify column 列名 新类型;
+```
 添加列
-
-    mysql>
-    alter table 表名 add column 新列名 新类型;
-
+```
+mysql>
+alter table 表名 add column 新列名 新类型;
+```
 删除列
-
-    mysql>
-    alter table 表名 drop column 列名;
-
+```
+mysql>
+alter table 表名 drop column 列名;
+```
 修改表名
-
-    mysql>
-    alter table 表名 rename to 新表名;
-
+```
+mysql>
+alter table 表名 rename to 新表名;
+```
 3.表的删除
-
-    mysql>
-    drop table if exists 表名;
-
+```
+mysql>
+drop table if exists 表名;
+```
 4.表的复制
+```
+mysql>
+只复制表的结构
+create table 新表名 like 旧表名;
 
-    mysql>
-    只复制表的结构
-    create table 新表名 like 旧表名;
+mysql>
+复制表的结构和数据
+create table 新表名
+select * from 旧表名
+
+mysql>
+只复制部分数据
+create table 新表名
+select 内容1，内容2
+from 旧表名
+where 条件;
     
-    mysql>
-    复制表的结构和数据
-    create table 新表名
-    select * from 旧表名
-    
-    mysql>
-    只复制部分数据
-    create table 新表名
-    select 内容1，内容2
-    from 旧表名
-    where 条件;
-    
-    mysql>
-    只复制某些字段
-    create table 新表名
-    select 内容
-    from 旧表名
-    where 0;
+mysql>
+只复制某些字段
+create table 新表名
+select 内容
+from 旧表名
+where 0;
+```
+
+
+##常见的数据类型
+数值型：整型，小数（定点数、浮点数）
+字符型：较短的文本char,varchar，较长的文本text,blob（较长的二进制数据）
+日期型：
+
+###一、整型
+整数类型|字节|范围
+--|--|--
+tinyint|1|有符号：-128~127，无符号：0~255
+smallint|2|有符号：-32768~32767，无符号：0~65535
+mediumint|3|有符号：-8388608~8388607，无符号：0~1677215
+int/integer|4|有符号：-2147483648~2147483647，无符号：0~4294967295
+bigint|8|有符号：-2^64-1~2^64，无符号2^65+1
+特点：
+1.如果不设置无符号还是有符号，默认是有符号，如果想设置无符号，需要添加unsigned关键字。
+2.如果插入的数值超出了整型的范围，会报out of range异常，并且插入临界值。
+3.如果不设置长度，会有默认的长度
+4.若要设置显示宽度，则在数据类型后面加上（要显示的长度），如果不够会用0在左边填充，但必须搭配关键字zerofill写在数据类型后使用。
+
+1.如何设置有符号和无符号
+```
+mysql>
+drop table if exists tab_int
+create table tab_int(
+    t1 int,
+    t2 int unsigned
+)
+insert into tab_int values(-123)
+insert into tab_int values(-123);
+```
+
+###二、小数
+浮点数类型|字节
+--|--
+float|4
+double|8
+
+定点数类型|字节
+--|--
+decimal(M,D)|M+2
+特点：
+1.M表示整数位数+小数位数，D表示小数点后数字的位数，如果小数点后位数超出会自动四舍五入，如果整数部分超出整数位数则会插入临界值。
+2.M和D都可以省略，会生成默认长度
+
+###三、字符型
+较短的文本：char,varchar，
+其他：binary和varbinary用于保存较短的二进制，enum用于保存枚举，set用于保存集合
+较长的文本：text,blob（较长的二进制数据）
+字符串类型|最多字符数|描述及存储需求|特点|空间耗费|效率
+--|--|--|--|--|
+char(M)|M，可以省略，默认为1|M为0~255之间的整数|固定长度的字符|比较耗费|高
+varchar(M)|M，不能省略|M为0~65535之间的整数|可变长度的字符|比较节省|低
+
+###四、日期型
+
+字符串类型|字节|最小值|最大值
+--|--|--|--
+date|4|1000-01-01|9999-12-31
+datetime|8|1000-01-01 00:00:00|9999-12-31 23:59:59
+timestamp|4|1970年|2038年的某个时刻
+time|3|-838:59:59|838:59:59
+year|1|1901|2155
