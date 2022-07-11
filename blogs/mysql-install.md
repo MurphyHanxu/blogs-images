@@ -1,11 +1,11 @@
 +++
-author = "Jasmine"
+author = "Murphy"
 title = "Win 10环境下安装MySQL 5.7"
-date = "2022-3-30"
+date = "2022-05-23"
 
 description = "Installation of MySQL 5.7 in Win 10"
 tags = [
-    "MySQL",
+    "SQL",
 ]
 
 categories = [

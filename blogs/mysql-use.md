@@ -1,11 +1,11 @@
 ﻿+++
 author = "Murphy"
-title = "notes"
-date = "2022-3-30"
+title = "Mysql-use notes"
+date = "2022-06-30"
 
 description = "SQL"
 tags = [
-    "MySQL",
+    "SQL",
 ]
 
 categories = [
@@ -14,7 +14,9 @@ categories = [
 
 +++
 
-整理MySQL最常用的SQL语句（建表、增删改查数据）。更多的命令可参考：https://www.runoob.com/mysql/mysql-select-database.html
+学习Mysql[视频](https://www.bilibili.com/video/BV12b411K7Zu?spm_id_from=333.337.search-card.all.click&vd_source=b3b5aca8a2675b381887886fba026f67)记录的笔记
+整理MySQL最常用的SQL语句（增删改查CRUD）。
+更多的命令可参考：https://www.runoob.com/mysql/mysql-select-database.html
 
 <!--more-->
 #Mysql-use
