@@ -28,7 +28,7 @@ categories = [
 &#160; &#160; &#160; &#160;接着，路由器作为互联网和家庭网络之间的接口。它从互联网请求数据并将其分发到台式计算机，笔记本电脑和平板电脑等网络设备。由于家庭网络中的设备使用本地IP地址相互通信，同时向外共享路由器的公共IP地址，因此需要路由器作为链路。然后，网络地址通过称为网络地址转换（NAT）的过程进行转换。  
 &#160; &#160; &#160; &#160;当识别出所选网页的IP地址时，浏览器从适当的Web服务器请求该页面的相关数据。此请求通过HTTP以数据包的形式发生，该数据包包含Web服务器为传递网页数据所需的所有信息。浏览器传达所选网页的IP地址，并提供有关操作系统本身以及应在其上显示网页的设备的信息。路由器将自己的公共IP地址添加为发送方，并将数据包转发到公共Internet。Web服务器处理该信息并发送一个HTTP状态码。如果请求成功，服务器发送状态码200和数据包，包含该页面所需的所有信息。如果服务器无法在请求的地址找到网页，则会发送状态码404。  
 &#160; &#160; &#160; &#160;最后，传入数据包从路由器转发到正在访问网页的计算机。然后，Web浏览器承担分析数据包的任务。网页通常包含HTML、Css和Java文件。这样我们想要访问的网页就呈现在我们眼前了。
-![setup-hugo-1](//MurphyHanxu.github.io/post/a_image/setup-hugo-1.png)  
+![setup-hugo-1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-1.png)  
 现在我们想要自己搭建一个网站需要什么？  
 &#160; &#160; &#160; &#160;需要自己编写网页的HTML、Css、Java文件和一台云服务器以及提供上云的软件和管理云服务器的软件等等，这种搭建网站的方式详情见[教程][2]。  
 &#160; &#160; &#160; &#160;搭建这样的动态网站方式也有缺点，就是搭建云上服务太耗时，而且上传的网站页面生成很慢，也还有维护服务器、数据库的烦恼。以Wordpress作为博客的载体太笨重，对markdown格式的支持不是很好，且打开速度极慢。  
@@ -71,7 +71,7 @@ GitHub功能特点
 解压成功后，可以在bin目录下看到“hugo.exe”。  
 &#160; &#160; &#160; &#160;3. 配置系统环境变量，为变量Path添加“hugo.exe”所在目录。
 对于我来说，添加的是“D:\works\Hugo\bin”。
-![setup-hugo-2](//MurphyHanxu.github.io/post/a_image/setup-hugo-2.png)  
+![setup-hugo-2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-2.png)  
 &#160; &#160; &#160; &#160;4. 执行如下命令，如果能显示版本号，则说明安装成功。
 
  ```shell
@@ -100,13 +100,12 @@ with "hugo new <SECTIONNAME>\<FILENAME>.<FORMAT>".
 Visit https://gohugo.io/ for quickstart guide and full documentation.
 ```
 
-
 &#160; &#160; &#160; &#160;3. 加入主题并预览，下载themes。
 访问[Hugo主题页面](https://themes.gohugo.io/)，找一个自己喜欢的主题下载到上一步创建的“themes”文件夹下，并解压。  
 我这次下载的是[NexT主题](https://themes.gohugo.io/themes/hugo-theme-next/)，它支持多设备显示自适应，同时支持评论、转发等博客需要的功能。  
-![setup-hugo-3](//MurphyHanxu.github.io/post/a_image/setup-hugo-3.png)
-![setup-hugo-4](//MurphyHanxu.github.io/post/a_image/setup-hugo-4.png)
-下载完成后，需要按照themes的说明做一些配置。对于我下载的主题，我按照要求把hugo-theme-next(-main)目录下的两个子目录config和content到站点根目录（即“D:\works\Hugo\myblog”）下。
+![setup-hugo-3](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-3.png)
+![setup-hugo-4](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-4.png)
+下载完成后，需要按照themes的说明做一些配置。对于我下载的主题，我按照要求把hugo-theme-next(-main)目录下的两个子目录config和content到站点根目录（即“D:\works\Hugo\myblog”)下。
 
 &#160; &#160; &#160; &#160;4. 在本地启动站点。在站点根目录执行如下cmd命令：
 ```shell
@@ -208,7 +207,7 @@ To https://github.com/Jasmine617/jasmine617.github.io.git
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 ```
 
-![setup-hugo-5](//MurphyHanxu.github.io/post/a_image/setup-hugo-5.png)
+![setup-hugo-5](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-5.png)
 如果git操作不熟练，这里可能会出现关联远程仓库失败或者推送失败的情况。请根据错误提示，搜索解决方法。
 到此就完成了网页的上传，托管到了GitHub上。再根据上一篇blog的方法查看自己的网站页面。
 
