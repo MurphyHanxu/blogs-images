@@ -28,4 +28,4 @@ categories = [
 
 下班回家的时候看到的附近工地，
 
-![setup-hugo-5](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/setup-hugo-5.png)
+![work_diary_in_summer2022-1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/work_diary_in_summer2022-1.png)
