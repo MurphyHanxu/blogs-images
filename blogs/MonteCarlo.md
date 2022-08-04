@@ -1,10 +1,10 @@
-+++
+------
 
 author = "Murphy"
-title = "蒙特卡洛算法基于python的简单实现"
-date = "2022-07-31"
+title = "python(xlrd,xlrt,pandas)对于excel的操作总结"
+date = "2022-08-01"
 
-description = "Installation of MySQL 5.7 in Win 10"
+description = ""
 tags = [
     "Mathematical Modeling",
 ]
@@ -13,7 +13,7 @@ categories = [
     "CS",
    ]
 
-+++
+------
 
 基于python用蒙特卡洛方法解决几道简单的数学建模问题。
 
@@ -36,25 +36,31 @@ categories = [
 ##### 工作步骤
 
 构造或描述概率过程
+
 实现从已知概率分布抽样
+
 建立各种估计量
 
 #### 例1
 
-Buffon's needle problem
+Buffon’s needle problem
 
 18世纪，蒲丰提出以下问题：设我们有一个以平行且等距木纹铺成的地板法国数学家布丰（1707-1788）最早设计了投针试验。
+
 这一方法的步骤是：
+
 1） 取一张白纸，在上面画上许多条间距为a的平行线。
+
 2） 取一根长度为l（l≤a） 的针，随机地向画有平行直线的纸上掷n次，观察针与直线相交的次数，记为m。
-3）计算针与直线相交的概率．
+
+3）计算针与直线相交的概率。
+
 18世纪，法国数学家布丰提出的“投针问题”，记载于布丰1777年出版的著作中：“在平面上画有一组间距为a的平行线，将一根长度为l（l≤a）的针任意掷在这个平面上，求此针与平行线中任一条相交的概率。”
-布丰本人证明了，这个概率是：
-(其中π为圆周率）
 
 布丰本人证明了，这个概率是：
-
-![Monte Carlo1](https://bkimg.cdn.bcebos.com/formula/3a0c6c5228d39686af63569aa4728d13.svg)
+$$
+p=\frac{2l}{πa}
+$$
 
 ```python
 #  布丰投针实验用于估计pi的精确值
@@ -73,9 +79,7 @@ phi = []
 #  画图
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.set(xlim=[0, math.pi], ylim=[0, a/2], title='An Example Axes',
-       ylabel='Y-Axis', xlabel='X-Axis')
-
+ax.set(xlim=[0, math.pi], ylim=[0, a/2], title='An Example Axes', ylabel='Y-Axis', xlabel='X-Axis')
 for i in range(0, n):
     temp = np.random.random() * a / 2
     x.append(temp)
@@ -122,7 +126,6 @@ import random
 # r = 0.666817
 
 #  2.计算函数y = ln(1+x)/1+x^2 在[0,1]区间的定积分
-
 #  绘制函数图像
 x = np.linspace(0, 1, num=50)
 y = np.log(1 + x) / (1 + x**2)
@@ -144,25 +147,21 @@ print(ans)
 三门问题
 
 三门问题（Monty Hall probelm）亦称为蒙提霍尔问题，出自美国电视游戏节目Let’s Make a Deal。
-参赛者会看见三扇关闭了的门，其中一扇的后面有一辆汽车，选中后面有车的那扇门可赢得该汽车，另外两扇门则各藏有一只山羊。
-当参赛者选定了一扇门，但未去开启它的时候，节目主持人开启剩下两扇门的其中一扇，露出其中一只山羊。主持人其后问参赛者要不要换另一扇仍然关上的门。
+
+参赛者会看见三扇关闭了的门，其中一扇的后面有一辆汽车，选中后面有车的那扇门可赢得该汽车，另外两扇门则各藏有一只山羊。当参赛者选定了一扇门，但未去开启它的时候，节目主持人开启剩下两扇门的其中一扇，露出其中一只山羊。主持人其后问参赛者要不要换另一扇仍然关上的门。
+
 问题是：换另一扇门是否会增加参赛者赢得汽车的几率？
 
 如果严格按照上述条件，即主持人清楚地知道，自己打开的那扇门后面是羊，那么答案是会。不换门的话，赢得汽车的几率是1/3,，换门的话，赢得汽车的几率是2/3。
 
-
-
 蒙特卡洛思想的应用
 
-应用蒙特卡洛重点在使用随机数来模拟类似于赌博问题的赢率问题，并且通过多次模拟得到所要计算值的模拟值。
-在三门问题中，用0、1、2分代表三扇门的编号，在[0,2]之间随机生成一个整数代表奖品所在门的编号prize，再次在[0,2]之间随机生成一个整数代表参赛者所选择的门的编号guess。用变量change代表游戏中的换门（true）与不换门（false）。
+应用蒙特卡洛重点在使用随机数来模拟类似于赌博问题的赢率问题，并且通过多次模拟得到所要计算值的模拟值。 在三门问题中，用0、1、2分代表三扇门的编号，在[0,2]之间随机生成一个整数代表奖品所在门的编号prize，再次在[0,2]之间随机生成一个整数代表参赛者所选择的门的编号guess。用变量change代表游戏中的换门（true）与不换门（false）。
 
-![Monte Carlo2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/MonteCarlo2.png)
+![Monte Carlo1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/MonteCarlo1.png)
 
 ```python
 import random
-
-
 def play(change):
     prize = random.randint(0, 2)
     guess = random.randint(0, 2)
@@ -177,14 +176,12 @@ def play(change):
         else:
             return False
 
-
 def winRate(change, N):
     win = 0
     for i in range(N):
         if (play(change)):
             win += 1
     print("中奖率为{}".format(win / N))
-
 
 N = 1000000
 
@@ -193,7 +190,6 @@ if __name__ == "__main__":
     winRate(True, N)
     print("每次都不换门的中奖概率：")
     winRate(False, N)
-
 # 理论换门2/3 不换门1/3
 # 每次换门的中奖概率：
 # 中奖率为0.665769
@@ -206,9 +202,12 @@ if __name__ == "__main__":
 M&M豆贝叶斯统计问题
 
 M&M豆是有各种颜色的糖果巧克力豆。制造M&M豆的Mars公司会不时变更不同颜色巧克力豆之间的混合比例。
-1995年，他们推出了蓝色的M&M豆。在此前一袋普通的M&M豆中，颜色的搭配为：30%褐色，20%黄色，20%红色，10%绿色，10%橙色，10%黄褐色。这之后变成了：24%蓝色，20%绿色，16%橙色，14%黄色，13%红色，13%褐色。
 
-假设我的一个朋友有两袋M&M豆，他告诉我一袋是1994年，一带是1996年。但他没告诉我具体那个袋子是哪一年的，他从每个袋子里各取了一个M&M豆给我。一个是黄色，一个是绿色的。那么黄色豆来自1994年的袋子的概率是多少？
+在此前一袋普通的M&M豆中，颜色的搭配为：30%褐色，20%黄色，20%红色，10%绿色，10%橙色，10%黄褐色。
+
+这之后变成了：24%蓝色，20%绿色，16%橙色，14%黄色，13%红色，13%褐色。
+
+假设已知两袋M&M豆，一袋是1994年，一袋是1996年。但不知道具体哪个袋子是哪一年的，现从每个袋子里各取了一个M&M豆，一个是黄色，一个是绿色的。那么黄色豆来自1994年的袋子的概率是多少？
 
 ```python
 import time
@@ -232,10 +231,61 @@ for i in range(10):
             count_all += 1
     print(count_key / count_all,20/27)
     print(time.strftime("%Y-%m-%d %X",time.localtime()))
-    
-    # ...
     # 0.7407064573459715 0.7407407407407407
     # 20/27是理论答案
-
 ```
 
+#### 例5
+
+书店购书问题（0-1规划问题）
+
+某同学从六家线上商场选购五本书籍，B1、B2、B3、B4、B5，每本书籍在不同商家的售价以及每个商家的单次运费如下表所示，请给该同学制定最省钱的选购方案。（注：在同一家店购买多本书也只会收取一次运费）
+
+|           | B1   | B2   | B3   | B4   | B5   | 运费 |
+| :-------- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **A商城** | 18   | 39   | 29   | 48   | 59   | 10   |
+| **B商城** | 24   | 45   | 23   | 54   | 44   | 15   |
+| **C商城** | 22   | 45   | 23   | 53   | 53   | 15   |
+| **D商城** | 28   | 47   | 17   | 57   | 47   | 10   |
+| **E商城** | 24   | 42   | 24   | 47   | 59   | 10   |
+| **F商城** | 27   | 48   | 20   | 55   | 53   | 15   |
+
+```python
+import numpy as np
+import random
+
+#  用于去掉列表中的重复元素
+def func1(data_list):
+    return list(set(data_list))
+
+
+min_money = float('inf')  # 初始化最小的花费为无穷大，后续只要找到比它小的就更新
+min_result = np.random.randint(1, 7, size=5)  # 初始化五本书都在哪一家书店购买，后续我们不断对其更新
+#  若min_result = [5 3 6 2 3]，则解释为：第1本书在第5家店买，第2本书在第3家店买，第3本书在第6家店买，第4本书在第2家店买，第5本书在第3家店买
+n = 800000  # 蒙特卡罗模拟的次数
+M = np.array([[18, 39, 29, 48, 59],
+              [24, 45, 23, 54, 44],
+              [22, 45, 23, 53, 53],
+              [28, 47, 17, 57, 47],
+              [24, 42, 24, 47, 59],
+              [27, 48, 20, 55, 53]])  # m_ij  第j本书在第i家店的售价
+freight = [10, 15, 15, 10, 10, 15]  # 第i家店的运费
+for i in range(0, n):
+    result = np.random.randint(0, 6, size=5)  # 在1-6这些整数中随机抽取一个1*5的向量，表示这五本书分别在哪家书店购买
+    index = func1(result)  # 在哪些商店购买了商品，因为我们等下要计算运费
+    # print(index)
+    money = 0
+    for j in index:
+        money = money + freight[j]
+        # print(money)
+    # 计算总花费：刚刚计算出来的运费 + 五本书的售价
+    for k in range(0, 5):
+        money = money + M[result[k] - 1, k]
+    if money < min_money:  # 判断刚刚随机生成的这组数据的花费是否小于最小花费，如果小于的话
+        min_money = money  # 我们更新最小的花费
+        min_result = result  # 用这组数据更新最小花费的结果
+print(min_result)
+print(min_money)
+#  最优情况为： [1 1 4 1 4]
+#  最少花费为: 194
+```

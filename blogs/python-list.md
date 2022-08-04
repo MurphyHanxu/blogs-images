@@ -16,6 +16,8 @@ categories = [
 
 对Python中list、turple、dict和set这四种数据类型进行对比总结。
 
+<!--more-->
+
 ## 概览
 
 |            | 列表list           | 元组tuple          | 字典dict                    | 集合set            |
@@ -31,8 +33,6 @@ categories = [
 | 改         | list[2]=newValue   | 只读               | dict[key1] = newValue       | set.update(value)  |
 | 查         | list[2:]           | tuple[1:5]         | dict[key]                   | value in set       |
 | 应用场景   | 非结构化数据存储   | 稳定的数据存储     | 结构化数据存储              | 数据剔重           |
-
-<!--more-->
 
 ## 列表
 
