@@ -1,19 +1,21 @@
-------
++++
 
 author = "Murphy"
-title = "python(xlrd,xlrt,pandas)对于excel的操作总结"
+title = "蒙特卡洛算法基于python的简单实现"
 date = "2022-08-01"
 
 description = ""
 tags = [
-    "Mathematical Modeling",
+    "Mathematical modeling",
 ]
 
 categories = [
     "CS",
    ]
 
-------
+math=true
+
++++
 
 基于python用蒙特卡洛方法解决几道简单的数学建模问题。
 
