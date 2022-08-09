@@ -63,10 +63,9 @@ def plotNode(nodeTxt, centerPt, parentPt, nodeType):
 
 代码定义了树节点格式的常量①。然后定义plotNode()函数执行了实际的绘图功能，该函数需要一个绘图区，该区域由全局变量createPlot.ax1定义。最后定义createPlot()函数，它是这段代码的核心。createPlot()函数首先创建了一个新图形并清空绘图区，然后在绘图区上绘制两个代表不同类型的树节点，后面我们将用这两个节点绘制树形图。
 
-为了测试上面代码的实际输出结果，打开Python命令提示符，导入treePlotter模块：
+为了测试上面代码的实际输出结果，打开Python命令提示符：
 
 ```python
->>>import treePlotter
 >>>treePlotter.createPlot()
 ```
 
