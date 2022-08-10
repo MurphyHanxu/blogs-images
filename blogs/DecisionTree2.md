@@ -29,9 +29,9 @@ toc=true
 
 ![DecisionTree2.1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.1.png)
 
-## 2.在Python中使用Matplotlib注解绘制树形图
+## 2.  在Python中使用Matplotlib注解绘制树形图
 
-### 2.1Matplotlib注解
+### 2.1  Matplotlib注解
 
 Matplotlib提供了一个注解工具annotations，它可以在数据图形上添加文本注释。注释通常用于解释数据的内容。由于数据上面直接存在文本描述非常丑陋，因此工具内嵌支持带箭头的划线工具，使得我们可以在其他恰当的地方指向数据位置，并在此处添加描述信息，解释数据内容。
 
@@ -71,7 +71,7 @@ def plotNode(nodeTxt, centerPt, parentPt, nodeType):
 
 ![DecisionTree2.2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.2.png)
 
-### 2.2构造注解树
+### 2.2  构造注解树
 
 绘制一棵完整的树需要一些技巧。我们虽然有$$x$$、$$y$$坐标，但是如何防止所有的树节点却是个问题。我们必须知道有多少个叶节点，以便可以正确确定$$x$$轴的长度；我们还需要知道树有多少层，以便可以正确确定$$y$$轴的高度。这里我们定义两个新函数getBumLeafs()和getTreeDepth()，来获取叶节点的数目和树的层数，参见程序清单2.2.1，并将这两个函数添加到文件treePlotter.py中。
 
