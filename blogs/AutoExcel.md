@@ -13,6 +13,10 @@ categories = [
     "CS",
    ]
 
+math=true
+
+toc=true
+
 +++
 
 总结xlrd，xlwt，pandas对于excel的常用操作。

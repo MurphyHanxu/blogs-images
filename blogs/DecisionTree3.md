@@ -13,7 +13,7 @@ categories = [
     "CS",
    ]
 
-math=true
+math= true
 
 toc=true
 

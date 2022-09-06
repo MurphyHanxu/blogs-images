@@ -15,6 +15,8 @@ categories = [
 
 math=true
 
+toc=true
+
 +++
 
 基于python用蒙特卡洛方法解决几道简单的数学建模问题。
