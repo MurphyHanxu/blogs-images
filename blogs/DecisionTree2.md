@@ -23,11 +23,11 @@ toc=true
 
 上节我们已经学习了如何从数据集中创建树，然而字典的表示形式非常不易于理解，而且直接绘制图形也比较困难。本节我们将使用Matplotlib库创建树形图。决策树的主要优点就是直观易于理解，如果不能将其直观地显示出来，就无法发挥其优势。
 
-<!--more-->
+<!--more--> 
 
 决策树的范例：
 
-![DecisionTree2.1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.1.png)
+![DecisionTree2.1](https://murphyhanxu.github.io/blogs-images/images/DecisionTree2.1.png)
 
 ## 2.  在Python中使用Matplotlib注解绘制树形图
 
@@ -69,7 +69,7 @@ def plotNode(nodeTxt, centerPt, parentPt, nodeType):
 >>>treePlotter.createPlot()
 ```
 
-![DecisionTree2.2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.2.png)
+![DecisionTree2.2](https://murphyhanxu.github.io/blogs-images/images/DecisionTree2.2.png)
 
 ### 2.2  构造注解树
 
@@ -189,7 +189,7 @@ def createPlot(inTree):
 
 输出效果如图，但是没有坐标轴标签。
 
-![DecisionTree2.3](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.3.png)
+![DecisionTree2.3](https://murphyhanxu.github.io/blogs-images/images/DecisionTree2.3.png)
 
 接着按照如下命令变更字典，重新绘制树形图。你也可以在树字典中随意添加一些数据，并重新绘制树形图观察输出结果的变化：
 
@@ -198,6 +198,6 @@ def createPlot(inTree):
 >>>treeplotter.createPlot(myTree)
 ```
 
-![DecisionTree2.4](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree2.4.png)
+![DecisionTree2.4](https://murphyhanxu.github.io/blogs-images/images/DecisionTree2.4.png)
 
 到目前为止，我们已经学习了如何构造决策树，以及绘制树形图的方法，下节我们将实际使用这些方法，并从数据和算法中得到某些新知识。

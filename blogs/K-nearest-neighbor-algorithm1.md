@@ -39,13 +39,13 @@ k近邻算法
 
 我们举一个电影分类的例子，使用k近邻算法分类爱情片和动作片。有人曾经统计过很多电影的打斗镜头和接吻镜头，图1显示了6部电影的打斗和接吻镜头数。假如有一部未看过的电影，如何确定它是爱情片还是动作片呢？
 
-![K-nearest-neighbor-algorithm1.1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm1.1.png)
+![K-nearest-neighbor-algorithm1.1](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm1.1.png)
 
-![K-nearest-neighbor-algorithm1.2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm1.2.png)
+![K-nearest-neighbor-algorithm1.2](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm1.2.png)
 
 即使不知道未知电影属于哪种类型，我们也可以通过某种方法计算出来。首先计算未知电影与样本集中其他电影的距离。此处暂时不关心如何计算得到这些距离值，使用Python实现电影分类应用时，会提供具体的计算方法。
 
-![K-nearest-neighbor-algorithm1.3](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm1.3.png)
+![K-nearest-neighbor-algorithm1.3](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm1.3.png)
 
 现在我们得到了样本集中所有电影与未知电影的距离，按照距离递增排序，可以找到k个距离最近的电影。假定k=3，则三个最靠近的电影依次是He's Not Really into Dudes、Beautiful Woman和California Man。k近邻算法按照距离最近的三部电影的类型，决定未知电影的类型，而这三部电影全是爱情片，因此我们判定未知电影是爱情片。
 
@@ -79,7 +79,7 @@ def createDataSet():
 
 向量label包含了每个数据点的标签信息，label包含的元素个数等于group矩阵行数。这里我们将数据点(1, 1.1)定义为类A，数据点(0, 0.1)定义为类B。为了说明方便，例子中的数值是任意选择的，并没有给出轴标签。下图是带有类标签信息的四个数据点。
 
-![K-nearest-neighbor-algorithm1.4](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm1.4.png)
+![K-nearest-neighbor-algorithm1.4](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm1.4.png)
 
 现在我们已经知道Python如何解析数据，如何加载数据，以及kNN算法的工作原理，接下来我们将使用这些方法完成分类任务。
 

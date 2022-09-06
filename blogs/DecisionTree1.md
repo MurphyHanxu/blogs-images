@@ -29,7 +29,7 @@ toc=true
 
 <!--more-->
 
-![DecisionTree1.1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree1.1.png)
+![DecisionTree1.1](https://murphyhanxu.github.io/blogs-images/images/DecisionTree1.1.png)
 
 ## 1.  决策树的构造
 
@@ -295,7 +295,7 @@ def chooseBestFeatureToSplit(dataSet):
 
 递归结束的条件是：程序遍历完所有划分数据集的属性，或者每个分支下的所有实例都具有相同的分类。如果所有实例具有相同的分类，则得到一个叶子节点或者终止块。任何到达叶子节点的数据必然属于叶子节点的分类，如下图所示。
 
-![DecisionTree2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/DecisionTree1.2.png)
+![DecisionTree2](https://murphyhanxu.github.io/blogs-images/images/DecisionTree1.2.png)
 
 第一个结束条件使得算法可以终止，我们甚至可以设置算法可以划分的最大分组数目。后续章节还会介绍其他决策树算法，如C4.5和CART，这些算法在运行时并不总是在每次划分分组时都会消耗特征。由于特征数目并不是在每次划分数据分组时都减少，因此这些算法在实际使用时可能引起一定的问题。目前我们并不需要考虑这个问题，只需要在算法开始运行前计算列的数目，查看算法是否使用了所有属性即可。如果数据集已经处理了所有属性，但是类标签依然不是唯一的，此时我们需要决定如何定义该叶子节点，在这种情况下，我们通常会采用多数表决的方法决定该叶子节点的分类。
 

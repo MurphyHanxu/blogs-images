@@ -106,7 +106,7 @@ plt.show()
 
 输出效果如下图所示，散点图使用datingDataMat矩阵的第二、第三列数据，分别表示特征值“玩视频游戏所耗时间百分比”和“每周所消费的冰淇淋公升数”。
 
-![K-nearest-neighbor-algorithm2.1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm2.1.png)
+![K-nearest-neighbor-algorithm2.1](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm2.1.png)
 
 
 
@@ -176,7 +176,7 @@ def showdatas(datingDataMat, datingLabels):
     plt.show()
 ```
 
-![K-nearest-neighbor-algorithm2.2](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm2.2.png)
+![K-nearest-neighbor-algorithm2.2](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm2.2.png)
 
 
 
@@ -186,7 +186,7 @@ def showdatas(datingDataMat, datingLabels):
 
 ### 2.3  准备数据：归一化数值
 
-![K-nearest-neighbor-algorithm2.3](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm2.3.png)
+![K-nearest-neighbor-algorithm2.3](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm2.3.png)
 
 我们很容易发现，数值插值大的属性对计算结果影响很大，也就是说，每年获取的飞行常客里程数对于计算结果的影响将远远大于其他两个特征的影响。而产生的这种现象的原因，仅仅是因为飞行常客里程数远大于其他特征值。但海伦认为这三种特征是同等重要的，因此作为三个等权重的特征之一，飞行常客里程数并不应该如此严重地影响到计算结果。
 
@@ -280,4 +280,4 @@ def classifyPerson():
 
 接着我们只需输入数据，海伦即可得到预测结果。
 
-![K-nearest-neighbor-algorithm2.4](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/K-nearest-neighbor-algorithm2.4.png)
+![K-nearest-neighbor-algorithm2.4](https://MurphyHanxu.github.io/blogs-images/images/K-nearest-neighbor-algorithm2.4.png)

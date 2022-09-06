@@ -162,7 +162,7 @@ print(ans)
 
 应用蒙特卡洛重点在使用随机数来模拟类似于赌博问题的赢率问题，并且通过多次模拟得到所要计算值的模拟值。 在三门问题中，用0、1、2分代表三扇门的编号，在[0,2]之间随机生成一个整数代表奖品所在门的编号prize，再次在[0,2]之间随机生成一个整数代表参赛者所选择的门的编号guess。用变量change代表游戏中的换门（true）与不换门（false）。
 
-![Monte Carlo1](https://raw.githubusercontent.com/MurphyHanxu/blogs-images/master/images/MonteCarlo1.png)
+![Monte Carlo1](https://MurphyHanxu.github.io/blogs-images/images/MonteCarlo1.png)
 
 ```python
 import random
